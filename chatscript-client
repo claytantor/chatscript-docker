@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /ChatScript-master
+./BINARIES/LinuxChatScript64 client=localhost:1024
