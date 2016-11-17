@@ -16,11 +16,14 @@ RUN set -ex \
     && unzip master.zip \
     && chmod 755 ./ChatScript-master/BINARIES/LinuxChatScript64
 
+# we want to install the client script so its easy to talk to the bot
+COPY chatscript-client /bin/
+RUN chmod +x /bin/chatscript-client
+
 ENV PORT 1024
 ENV DEBIAN_FRONTEND noninteractive
 
 EXPOSE 1024
-
 
 # startup
 USER root
