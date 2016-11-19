@@ -23,10 +23,17 @@ RUN chmod +x /bin/chatscript-client
 ENV PORT 1024
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN { echo '#!/bin/bash'; \
+      echo 'set -e'; \
+	  echo 'cd /ChatScript-master'; \
+      echo './BINARIES/LinuxChatScript64'; \
+    } > /entrypoint-chatscript.sh \
+ && chmod +x /entrypoint-chatscript.sh
+
 EXPOSE 1024
 
 # startup
 USER root
-WORKDIR /ChatScript-master
+
 CMD ["/bin/echo", "Hello ChatScript"]
-CMD ["./BINARIES/LinuxChatScript64"]
+CMD ["/entrypoint-chatscript.sh"]
